@@ -1,5 +1,5 @@
 # --- Build Stage: Frontend ---
-FROM node:20-slim AS frontend-builder
+FROM node:20 AS frontend-builder
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
@@ -7,7 +7,7 @@ COPY frontend/ .
 RUN npm run build
 
 # --- Build Stage: Backend ---
-FROM node:20-slim AS backend-builder
+FROM node:20 AS backend-builder
 WORKDIR /app/backend
 COPY backend/package*.json ./
 RUN npm install
@@ -15,13 +15,18 @@ COPY backend/ .
 RUN npm run build
 
 # --- Final Stage ---
-FROM leanprover/lean4:latest
+FROM node:20
 
-# Install Node.js
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install dependencies for elan/lean
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    libgmp-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install elan and Lean 4 stable
+RUN curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:stable
+ENV PATH="/root/.elan/bin:${PATH}"
 
 WORKDIR /app
 

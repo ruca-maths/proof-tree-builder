@@ -98,7 +98,7 @@ app.post('/evaluate', async (req: Request, res: Response) => {
     }
 
     // Step 2: Generate Lean Code
-    let leanCode = "import Mathlib\n\n";
+    let leanCode = "";
     
     try {
          const baseLibPath = path.join(__dirname, '..', 'theories', 'group.lean');
