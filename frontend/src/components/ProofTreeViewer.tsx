@@ -80,7 +80,7 @@ function BussproofsNode({
           gap: 0,
           marginBottom: 6,
         }}>
-          {premises.map((pNode, i) => (
+          {premises.map((pNode) => (
             <BussproofsNode
               key={pNode.id}
               nodeId={pNode.id}

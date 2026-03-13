@@ -1,4 +1,4 @@
-import { Implies, Not, Pred } from '../logic/expression';
+import { Implies, Pred } from '../logic/expression';
 import type { LevelData } from '../context/ProofContext';
 
 const P = Pred('P', []);

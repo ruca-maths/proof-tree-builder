@@ -1,0 +1,5 @@
+﻿src/components/ProofTreeViewer.tsx(83,33): error TS6133: 'i' is declared but its value is never read.
+src/context/ProofContext.tsx(2,19): error TS6133: 'formulasEqual' is declared but its value is never read.
+src/data/levels.ts(1,19): error TS6133: 'Not' is declared but its value is never read.
+src/logic/parser.ts(1,64): error TS6133: 'Meta' is declared but its value is never read.
+src/logic/proof.ts(1,19): error TS6133: 'freeVars' is declared but its value is never read.

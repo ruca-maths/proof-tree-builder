@@ -1,4 +1,4 @@
-import { Formula, Term, Var, Func, Pred, Not, Implies, Forall, Meta, Or, And, Iff, Exists } from './expression';
+import { Formula, Term, Var, Func, Pred, Not, Implies, Forall, Or, And, Iff, Exists } from './expression';
 
 // ===== Token Types =====
 type TokenType =

@@ -1,4 +1,4 @@
-import { Formula, freeVars, formulasEqual } from './expression';
+import { Formula, formulasEqual } from './expression';
 import type { AxiomName } from './axioms';
 
 // ===== Rule Types =====

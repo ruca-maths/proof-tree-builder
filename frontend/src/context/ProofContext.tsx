@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useRef } from 'react';
-import { Formula, formulasEqual } from '../logic/expression';
+import { Formula } from '../logic/expression';
 import { ProofTree, ProofNode } from '../logic/proof';
 import type { Node, Edge } from '@xyflow/react';
 
