@@ -211,7 +211,7 @@ const frontendDistPath = path.join(__dirname, '../../frontend/dist');
 app.use(express.static(frontendDistPath));
 
 // Fallback for SPA (Single Page Application)
-app.get('*', (req: Request, res: Response) => {
+app.use((req: Request, res: Response) => {
     const indexPath = path.join(frontendDistPath, 'index.html');
     if (fs.existsSync(indexPath)) {
         res.sendFile(indexPath);
