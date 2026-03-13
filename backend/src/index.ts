@@ -8,7 +8,7 @@ import * as os from 'os';
 import iconv from 'iconv-lite';
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
@@ -201,4 +201,22 @@ app.post('/evaluate', async (req: Request, res: Response) => {
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
+});
+
+// --- Static File Serving ---
+
+const frontendDistPath = path.join(__dirname, '../../frontend/dist');
+
+// Serve static files from the frontend
+app.use(express.static(frontendDistPath));
+
+// Fallback for SPA (Single Page Application)
+app.get('*', (req: Request, res: Response) => {
+    const indexPath = path.join(frontendDistPath, 'index.html');
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        // Fallback for development if index.html is missing
+        res.status(404).json({ error: "Frontend not built or index.html missing." });
+    }
 });
